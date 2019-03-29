@@ -5,4 +5,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="birra_nome">Nome</string>
     <string name="birra_produttore">Produttore</string>
+    <string name="segnaposto">Abcdefg</string>
+    <string name="label_produttore">Produttore:</string>
+    <string name="label_gradazione">Gradazione:</string>
 </resources>
