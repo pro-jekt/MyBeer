@@ -8,4 +8,7 @@
     <string name="segnaposto">Abcdefg</string>
     <string name="label_produttore">Produttore:</string>
     <string name="label_gradazione">Gradazione:</string>
+    <string name="hint_nome">Nome birra</string>
+    <string name="hint_produttore">Produttore</string>
+    <string name="hint_gradazione">Gradazione</string>
 </resources>
