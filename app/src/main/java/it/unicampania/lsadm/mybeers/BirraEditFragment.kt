@@ -7,6 +7,11 @@ import android.support.v4.app.Fragment
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import it.unicampania.lsadm.mybeers.datamodel.Birra
+import it.unicampania.lsadm.mybeers.datamodel.DataBase
 import kotlinx.android.synthetic.main.fragment_birra_edit.*
 
 
@@ -42,8 +47,12 @@ class BirraEditFragment : Fragment() {
         when (item?.itemId) {
 
             R.id.menuConferma -> {      // Conferma
-                if (campiValidi())
-                    ;   // Passa al salvataggio
+                if (campiValidi()) {
+                    // Passa al salvataggio
+                    val birra = Birra(editNome.text.toString(), editProduttore.text.toString(), "",editGradazione.text.toString().toFloat())
+                    DataBase.salvaBirra(birra)
+                    Navigation.findNavController(view!!).navigateUp()
+                }
             }
         }
         return super.onOptionsItemSelected(item)

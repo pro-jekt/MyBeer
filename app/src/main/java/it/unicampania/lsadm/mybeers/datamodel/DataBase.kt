@@ -19,4 +19,11 @@ object DataBase {
     fun getElencoBirre(): ArrayList<Birra> {
         return birre
     }
+
+    /**
+     * Aggiunge una nuova birra nel database
+     */
+    fun salvaBirra(birra: Birra) {
+        birre.add(birra)
+    }
 }
