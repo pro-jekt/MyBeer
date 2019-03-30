@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import it.unicampania.lsadm.mybeers.datamodel.DataBase
 import kotlinx.android.synthetic.main.fragment_birre.*
 
@@ -34,6 +35,10 @@ class BirreFragment : Fragment() {
 
         // Associo l'adapter alla RecyclerView
         listBirre.adapter = BirreAdapter(DataBase.getElencoBirre(), requireContext())
+
+        fabAggiungiBirra.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_birreFragment_to_birraEditFragment)
+        }
     }
 
 }
