@@ -19,6 +19,9 @@ import kotlinx.android.synthetic.main.fragment_birre.*
  */
 class BirreFragment : Fragment() {
 
+    // L'adapter va dichiarato lateinit per inizializzarlo dopo la creazione della view
+    private lateinit var adapter: BirreAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,10 +37,12 @@ class BirreFragment : Fragment() {
         listBirre.layoutManager = LinearLayoutManager(activity)
 
         // Associo l'adapter alla RecyclerView
-        listBirre.adapter = BirreAdapter(DataBase.getElencoBirre(), requireContext())
+        adapter = BirreAdapter(DataBase.getElencoBirre(), requireContext())
+        listBirre.adapter = adapter
 
         fabAggiungiBirra.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_birreFragment_to_birraEditFragment)
+            adapter.notifyDataSetChanged()  // Aggiorno la lista dopo ogni inserimento
         }
     }
 
