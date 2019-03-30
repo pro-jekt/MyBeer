@@ -12,4 +12,5 @@
     <string name="hint_produttore">Produttore</string>
     <string name="hint_gradazione">Gradazione</string>
     <string name="menuConferma">Conferma</string>
+    <string name="valCampiObbligatori">Tutti i campi sono obbligatori</string>
 </resources>
