@@ -11,4 +11,5 @@
     <string name="hint_nome">Nome birra</string>
     <string name="hint_produttore">Produttore</string>
     <string name="hint_gradazione">Gradazione</string>
+    <string name="menuConferma">Conferma</string>
 </resources>
