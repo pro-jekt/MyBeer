@@ -26,4 +26,9 @@ object DataBase {
     fun salvaBirra(birra: Birra) {
         birre.add(birra)
     }
+    fun eliminaBirra(birra: Birra){
+
+        birre.remove(birra)
+
+    }
 }

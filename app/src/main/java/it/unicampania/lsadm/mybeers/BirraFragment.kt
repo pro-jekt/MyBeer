@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import it.unicampania.lsadm.mybeers.datamodel.Birra
+import it.unicampania.lsadm.mybeers.datamodel.DataBase
 import kotlinx.android.synthetic.main.fragment_birra.*
 
 /**
@@ -36,5 +37,20 @@ class BirraFragment : Fragment() {
             }
         }
     }
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        nascondiTastiera()
 
+        when (item?.itemId) {
+
+            R.id.menuConferma -> {      // Conferma
+
+                    // elimino
+                    val birra = Birra(editNome.text.toString(), editProduttore.text.toString(), "",editGradazione.text.toString().toFloat())
+                    DataBase.eliminaBirra(birra)
+                    Navigation.findNavController(view!!).navigateUp()
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
