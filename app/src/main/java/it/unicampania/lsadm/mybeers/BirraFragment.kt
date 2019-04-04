@@ -1,11 +1,12 @@
 package it.unicampania.lsadm.mybeers
 
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.inputmethod.InputMethodManager
+import androidx.navigation.Navigation
 import it.unicampania.lsadm.mybeers.datamodel.Birra
 import it.unicampania.lsadm.mybeers.datamodel.DataBase
 import kotlinx.android.synthetic.main.fragment_birra.*
@@ -16,12 +17,14 @@ import kotlinx.android.synthetic.main.fragment_birra.*
  */
 class BirraFragment : Fragment() {
 
+    val birra?
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_birra, container, false)
+        setHasOptionsMenu(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,7 +32,7 @@ class BirraFragment : Fragment() {
 
         // Estraggo il parametro (birra) dal bundle ed eventualmente lo visualizzo
         arguments?.let {
-            val birra: Birra? = it.getParcelable("birra")   //TODO: Il nome dovrebbe essere in un unico punto!!
+           val birra: Birra? = it.getParcelable("birra")   //TODO: Il nome dovrebbe essere in un unico punto!!
             birra?.let {
                 textNome.text = it.nome
                 textProduttore.text = it.produttore
@@ -37,20 +40,33 @@ class BirraFragment : Fragment() {
             }
         }
     }
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    /**
+     * Nasconde la tastiera
+     */
+    private fun nascondiTastiera() {
+        activity?.currentFocus?.let {
+            val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem? ): Boolean {
         nascondiTastiera()
 
         when (item?.itemId) {
 
-            R.id.menuConferma -> {      // Conferma
+            R.id.menuElimina -> {      // Conferma
 
                     // elimino
-                    val birra = Birra(editNome.text.toString(), editProduttore.text.toString(), "",editGradazione.text.toString().toFloat())
-                    DataBase.eliminaBirra(birra)
+                    DataBase.eliminaBirra(BirraFragment.birra)
                     Navigation.findNavController(view!!).navigateUp()
 
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.edit_birra, menu)
     }
 }
