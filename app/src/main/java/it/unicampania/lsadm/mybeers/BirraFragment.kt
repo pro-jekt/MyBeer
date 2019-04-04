@@ -17,14 +17,14 @@ import kotlinx.android.synthetic.main.fragment_birra.*
  */
 class BirraFragment : Fragment() {
 
-    val birra?
+    var delbirra : Birra? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_birra, container, false)
         setHasOptionsMenu(true)
+        return inflater.inflate(R.layout.fragment_birra, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,6 +33,7 @@ class BirraFragment : Fragment() {
         // Estraggo il parametro (birra) dal bundle ed eventualmente lo visualizzo
         arguments?.let {
            val birra: Birra? = it.getParcelable("birra")   //TODO: Il nome dovrebbe essere in un unico punto!!
+            delbirra= birra
             birra?.let {
                 textNome.text = it.nome
                 textProduttore.text = it.produttore
@@ -58,15 +59,17 @@ class BirraFragment : Fragment() {
             R.id.menuElimina -> {      // Conferma
 
                     // elimino
-                    DataBase.eliminaBirra(BirraFragment.birra)
+                delbirra?.let { DataBase.eliminaBirra(it) }
                     Navigation.findNavController(view!!).navigateUp()
 
             }
         }
         return super.onOptionsItemSelected(item)
     }
+
+
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.edit_birra, menu)
+        inflater?.inflate(R.menu.delete_birra, menu)
     }
 }
