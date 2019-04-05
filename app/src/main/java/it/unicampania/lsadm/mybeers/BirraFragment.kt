@@ -31,8 +31,7 @@ class BirraFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_birra, container, false)
     }
 
-    fun createAlert (): Boolean{
-        var risposta = false
+    fun createAlert (){
         getActivity()?.let {
             AlertDialog.Builder(it)
                 .setCancelable(false)
@@ -40,13 +39,13 @@ class BirraFragment : Fragment() {
                 .setMessage("Sei sicuro di voler eliminare la birra?")
 
                 .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which ->
-                    risposta = false
+
                 }).setPositiveButton("Sì", DialogInterface.OnClickListener
                 { dialog, which ->
-                    risposta = true
+                    delbirra?.let { DataBase.eliminaBirra(it) }
+                    Navigation.findNavController(view!!).navigateUp()
                 }).create().show()
         }
-        return risposta
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -79,13 +78,7 @@ class BirraFragment : Fragment() {
         when (item?.itemId) {
 
             R.id.menuElimina -> {
-            // elimino
-                val risposta = createAlert()
-                if (risposta) {
-                    delbirra?.let { DataBase.eliminaBirra(it) }
-                    Navigation.findNavController(view!!).navigateUp()
-                }
-                Log.d("Risposta", risposta.toString())
+            createAlert()
             }
         }
         return super.onOptionsItemSelected(item)
