@@ -2,8 +2,12 @@ package it.unicampania.lsadm.mybeers
 
 
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
+import android.util.Log
+import android.util.LogPrinter
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.navigation.Navigation
@@ -17,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_birra.*
  */
 class BirraFragment : Fragment() {
 
-    var delbirra : Birra? = null
+    var delbirra: Birra? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,6 +29,24 @@ class BirraFragment : Fragment() {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_birra, container, false)
+    }
+
+    fun createAlert (): Boolean{
+        var risposta = false
+        getActivity()?.let {
+            AlertDialog.Builder(it)
+                .setCancelable(false)
+                .setTitle("Attenzione!")
+                .setMessage("Sei sicuro di voler eliminare la birra?")
+
+                .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which ->
+                    risposta = false
+                }).setPositiveButton("Sì", DialogInterface.OnClickListener
+                { dialog, which ->
+                    risposta = true
+                }).create().show()
+        }
+        return risposta
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,12 +78,14 @@ class BirraFragment : Fragment() {
 
         when (item?.itemId) {
 
-            R.id.menuElimina -> {      // Conferma
-
-                    // elimino
-                delbirra?.let { DataBase.eliminaBirra(it) }
+            R.id.menuElimina -> {
+            // elimino
+                val risposta = createAlert()
+                if (risposta) {
+                    delbirra?.let { DataBase.eliminaBirra(it) }
                     Navigation.findNavController(view!!).navigateUp()
-
+                }
+                Log.d("Risposta", risposta.toString())
             }
         }
         return super.onOptionsItemSelected(item)
@@ -72,4 +96,5 @@ class BirraFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater?.inflate(R.menu.delete_birra, menu)
     }
-}
+
+    }
