@@ -59,6 +59,7 @@ class BirraFragment : Fragment() {
                 textNome.text = it.nome
                 textProduttore.text = it.produttore
                 textGradazione.text = String.format("%.2f", it.gradazione)
+                imageView.setImageResource()
             }
         }
     }
