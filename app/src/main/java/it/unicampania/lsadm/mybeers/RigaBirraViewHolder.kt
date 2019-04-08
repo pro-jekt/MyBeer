@@ -11,4 +11,5 @@ import kotlinx.android.synthetic.main.riga_birra.view.*
 class RigaBirraViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val tvNome = view.textNome
     val tvProduttore = view.textProduttore
+    val tvImmagine = view.imageView4
 }

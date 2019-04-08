@@ -49,7 +49,7 @@ class BirraEditFragment : Fragment() {
             R.id.menuConferma -> {      // Conferma
                 if (campiValidi()) {
                     // Passa al salvataggio
-                    val birra = Birra(editNome.text.toString(), editProduttore.text.toString(), "",editGradazione.text.toString().toFloat())
+                    val birra = Birra(editNome.text.toString(), editProduttore.text.toString(), "",editGradazione.text.toString().toFloat(),immagine = R.drawable.moretti)
                     DataBase.salvaBirra(birra)
                     Navigation.findNavController(view!!).navigateUp()
                 }

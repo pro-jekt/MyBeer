@@ -31,6 +31,8 @@ class BirreAdapter(val dataset: ArrayList<Birra>, val context: Context) : Recycl
 
         viewHolder.tvNome.text = birra.nome
         viewHolder.tvProduttore.text = birra.produttore
+        viewHolder.tvImmagine.setImageResource(birra.immagine)
+
 
         // Imposto il listner per passare a visualizzare il dettaglio
         viewHolder.itemView.setOnClickListener {
