@@ -37,7 +37,10 @@ class BirraEditFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pick_image.setOnClickListener{
-            pickImageFromGallery()
+            if(permission_granted!!)
+                pickImageFromGallery()
+            else
+                Toast.makeText(this.context, "Permesso negato", Toast.LENGTH_SHORT).show()
         }
     }
 
