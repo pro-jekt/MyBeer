@@ -13,6 +13,7 @@ val tennents = Uri.parse("android.resource://"+ package_name + "/" + R.drawable.
 val birra = Uri.parse("android.resource://"+ package_name + "/" + R.drawable.birra)
 val corona = Uri.parse("android.resource://"+ package_name + "/" + R.drawable.corona)
 val moretti = Uri.parse("android.resource://"+ package_name + "/" + R.drawable.moretti)
+val default_birra = Uri.parse("android.resource://"+ package_name + "/" + R.drawable.ic_free_breakfast_black_24dp)
 
 @Parcelize
 data class Birra(var nome: String, var produttore: String, var tipologia: String, var gradazione: Float, var immagine: Uri) : Parcelable

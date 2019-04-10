@@ -40,9 +40,8 @@ class BirraFragment : Fragment() {
                 .setTitle("Attenzione!")
                 .setMessage("Sei sicuro di voler eliminare la birra?")
 
-                .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which ->
-
-                }).setPositiveButton("Sì", DialogInterface.OnClickListener
+                .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which ->})
+                .setPositiveButton("Sì", DialogInterface.OnClickListener
                 { dialog, which ->
                     delbirra?.let { DataBase.eliminaBirra(it) }
                     Navigation.findNavController(view!!).navigateUp()

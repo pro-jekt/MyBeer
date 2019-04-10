@@ -53,10 +53,14 @@
             android:layout_marginStart="64dp" android:hint="@string/hint_nome"/>
     <ImageView
             android:src="@drawable/ic_add_black_24dp"
-            android:layout_width="191dp"
-            android:layout_height="161dp"
-            android:id="@+id/pick_image" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="120dp" android:layout_marginTop="164dp"
-            app:layout_constraintTop_toBottomOf="@+id/editGradazione"/>
+            android:layout_width="301dp"
+            android:layout_height="328dp"
+            android:id="@+id/pick_image"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/editGradazione" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.391"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="55dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="56dp"/>
 
 </android.support.constraint.ConstraintLayout>
