@@ -10,11 +10,12 @@ object DataBase {
     // Array per simulare il contenuto del database
     private var birre = ArrayList<Birra>()
 
+
     // Inizializzatore per popolare il database con qualche dato
     init {
-        birre.add(Birra("Blonde", "Leffe", "mista", 6.6f, R.drawable.tennents))
-        birre.add(Birra("La Biere du Demon", "Brasserie Goudale", "lager", 12f, R.drawable.moretti))
-        birre.add(Birra("BrewMaster's Choice IPA", "Target 2000", "ipa", 5.8f, R.drawable.corona))
+        birre.add(Birra("Blonde", "Leffe", "mista", 6.6f, tennents))
+        birre.add(Birra("La Biere du Demon", "Brasserie Goudale", "lager", 12f, moretti))
+        birre.add(Birra("BrewMaster's Choice IPA", "Target 2000", "ipa", 5.8f, corona))
     }
 
     // Restituisce l'elenco di tutte le birre presenti

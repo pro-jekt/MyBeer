@@ -1,9 +1,13 @@
 package it.unicampania.lsadm.mybeers
 
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -12,6 +16,7 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import it.unicampania.lsadm.mybeers.datamodel.Birra
 import it.unicampania.lsadm.mybeers.datamodel.DataBase
+import it.unicampania.lsadm.mybeers.datamodel.moretti
 import kotlinx.android.synthetic.main.fragment_birra_edit.*
 
 
@@ -24,10 +29,12 @@ class BirraEditFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_birra_edit, container, false)
+
     }
 
     /**
@@ -49,7 +56,7 @@ class BirraEditFragment : Fragment() {
             R.id.menuConferma -> {      // Conferma
                 if (campiValidi()) {
                     // Passa al salvataggio
-                    val birra = Birra(editNome.text.toString(), editProduttore.text.toString(), "",editGradazione.text.toString().toFloat(),immagine = R.drawable.moretti)
+                    val birra = Birra(editNome.text.toString(), editProduttore.text.toString(), "",editGradazione.text.toString().toFloat(),immagine = moretti)
                     DataBase.salvaBirra(birra)
                     Navigation.findNavController(view!!).navigateUp()
                 }
@@ -77,5 +84,5 @@ class BirraEditFragment : Fragment() {
             imm.hideSoftInputFromWindow(it.windowToken, 0)
         }
     }
-
+    
 }

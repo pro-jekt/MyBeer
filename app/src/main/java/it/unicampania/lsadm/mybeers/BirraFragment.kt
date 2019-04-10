@@ -3,6 +3,7 @@ package it.unicampania.lsadm.mybeers
 
 import android.content.Context
 import android.content.DialogInterface
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_birra.*
  * A simple [Fragment] subclass.
  *
  */
+
 class BirraFragment : Fragment() {
 
     var delbirra: Birra? = null
@@ -59,7 +61,9 @@ class BirraFragment : Fragment() {
                 textNome.text = it.nome
                 textProduttore.text = it.produttore
                 textGradazione.text = String.format("%.2f", it.gradazione)
-                imageView.setImageResource()
+                val uri = Uri.parse("res:///" + R.drawable.birra)
+                Log.d("URI", uri.toString())
+                imageView.setImageURI(birra.immagine)
             }
         }
     }

@@ -51,5 +51,12 @@
             android:id="@+id/editNome" android:layout_marginTop="48dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toEndOf="@+id/textView"
             android:layout_marginStart="64dp" android:hint="@string/hint_nome"/>
+    <ImageView
+            android:src="@drawable/ic_add_black_24dp"
+            android:layout_width="191dp"
+            android:layout_height="161dp"
+            android:id="@+id/imageView2" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="120dp" android:layout_marginTop="164dp"
+            app:layout_constraintTop_toBottomOf="@+id/editGradazione"/>
 
 </android.support.constraint.ConstraintLayout>
