@@ -5,16 +5,20 @@ package it.unicampania.lsadm.mybeers
 
 import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.navigation.Navigation
 import it.unicampania.lsadm.mybeers.datamodel.Birra
 import it.unicampania.lsadm.mybeers.datamodel.DataBase
+import it.unicampania.lsadm.mybeers.datamodel.default_birra
+import it.unicampania.lsadm.mybeers.datamodel.moretti
 import kotlinx.android.synthetic.main.fragment_birra_edit.*
 
 
@@ -39,8 +43,16 @@ class BirraEditFragment : Fragment() {
         pick_image.setOnClickListener{
             if(permission_granted!!)
                 pickImageFromGallery()
-            else
-                Toast.makeText(this.context, "Permesso negato", Toast.LENGTH_SHORT).show()
+            else {
+                //Toast.makeText(this.context, "Permesso negato", Toast.LENGTH_SHORT).show()
+                getActivity()?.let {
+                    AlertDialog.Builder(it)
+                        .setCancelable(false)
+                        .setTitle("Attenzione!")
+                        .setMessage("Permesso alla lettura dei file multimediali non concesso.")
+                        .setNeutralButton("Ok", DialogInterface.OnClickListener{ dialog, which ->})
+                }?.create()?.show()
+            }
         }
     }
 
@@ -77,6 +89,10 @@ class BirraEditFragment : Fragment() {
      */
     private fun campiValidi(): Boolean {
         val validi = editNome.text.length > 0 && editProduttore.text.length > 0 && editGradazione.text.length > 0
+        if (picked_image == null){
+                picked_image = default_birra
+            }
+
         if (!validi)
             Toast.makeText(activity, R.string.valCampiObbligatori, Toast.LENGTH_SHORT).show()
         return validi
